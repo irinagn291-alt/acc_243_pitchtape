@@ -23,11 +23,10 @@ submission_information({
 })
 
 # The binary is uploaded by the archive workflow, so deliver only carries the metadata.
-# Screenshots must still go up: Apple rejects review without iphone65 and ipadPro129.
 skip_binary_upload true
 skip_screenshots false
+screenshots_path("./fastlane/screenshots")
 overwrite_screenshots true
-screenshots_path "./fastlane/screenshots"
 skip_app_version_update true
 
 submit_for_review true
