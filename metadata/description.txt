@@ -1,0 +1,14 @@
+Pitchtape is a sideline sheet for coaches and parents. Tap Goal, Foul, Card, or Sub onto the running clock on the ON-AIR board. This is not a betting board.
+
+• ON-AIR console with live clock, Home and Away score, call pad, and take tape
+• Start the clock with Home, Away, and a Pitch, Ice, or Court template
+• Goal, Foul, Card, and Sub write a Call on the open tape
+• Undo peels the last Call on the open period
+• Whistle parks the period and opens the next empty tape
+• Matches starts or resumes a fixture
+• Insights lists parked tapes and Export parked tapes as PDF
+• Settings: Sport, Contact us, Re-run onboarding, Reset all data
+• First-run walkthrough with Continue, Skip, and Start the clock
+• Periods and calls stay on this device
+
+Sport templates only label the next kickoff. Odds and money are not in the product.

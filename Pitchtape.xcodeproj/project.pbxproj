@@ -1,0 +1,668 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		13DC4618155192728D82A044 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65A3DB466039DC562291A3CE /* Assets.xcassets */; };
+		14CCDC34B6CB69DC6D2AFBF6 /* TapeBooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C749EFF3B15A2A999F7AD20 /* TapeBooth.swift */; };
+		151932DE891A81E279D8D600 /* OnAirBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF972DB61C9111D1F1D8642C /* OnAirBoard.swift */; };
+		1A6E09A44F742E62F8B50A42 /* CallMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85114EEEFB5D3231587778DB /* CallMark.swift */; };
+		1C1A9A77010C81BC0D471F69 /* TapeFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909B1D1B748B652EB54641C9 /* TapeFace.swift */; };
+		1D8F67B798ACE107B6C8F1CA /* TapeClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B8E95CA0A32C30DA4C127F /* TapeClientTests.swift */; };
+		202D81EB4785D523B6BBF9EE /* PitchtapeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40D7BF3C74C2D7D2608B2EE /* PitchtapeTests.swift */; };
+		2043639B3FCD63A7C67FF0B9 /* APIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594EB295A8A56EB456B9B88C /* APIConfig.swift */; };
+		29A665AADE14F3C1536405F8 /* TapeLaneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9B48F2F882A2A1C4C59C55 /* TapeLaneTests.swift */; };
+		3A0A5651CA41C42B8D44BDC5 /* FirstWhistle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8752C1857A5B24DBFFE3629B /* FirstWhistle.swift */; };
+		3DD0FDE4EE10B1EEEFD3666E /* WhistleSplitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA4B0855FEBB170CB72D4A9 /* WhistleSplitTests.swift */; };
+		3E5FF6145E6E6399B66BCF69 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE92AB34ACDF208F4A2D828F /* ContentView.swift */; };
+		4014CA7394662CC1F7344656 /* TapeBevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F16CE50A680778BD293939E /* TapeBevel.swift */; };
+		4D61A52CCCB8FD3402CDB7CC /* WhistleReel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B8126D14F79D771CD7C805 /* WhistleReel.swift */; };
+		59911C5BD04BFF9B429AB974 /* TapePrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599FD434754B3935C6FC15AA /* TapePrefs.swift */; };
+		673F0F6B5501008DF4C7FC56 /* TapeClock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BB52683F9DF583F44EA682 /* TapeClock.swift */; };
+		685E395EF1D558C23C1322AC /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = E96D5786F361727C3D003953 /* Alamofire */; };
+		6D381548C118EF3EBDCCE065 /* BoothDesk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6797DB35A582BC09F93D1E9F /* BoothDesk.swift */; };
+		8904AB47924390A704AB92F9 /* TapeLane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997C0A79698D51C00ED62599 /* TapeLane.swift */; };
+		8A5F35BE1790DB198DB82D1D /* TapeBoothTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44443ED606EEF12C077E466 /* TapeBoothTests.swift */; };
+		8EE3DB7104AAE8C0D8DE1203 /* TapeClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28539626B29F35FBA27F20E /* TapeClient.swift */; };
+		900D67807E600727E6B73CFF /* BoothDeskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D8FB5580DA1B0B20AD6DCD /* BoothDeskTests.swift */; };
+		91D1BB2C531D9F4524AC1D08 /* ParkedReelPDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B29C000D2AD8A9A77E22A0A /* ParkedReelPDF.swift */; };
+		A61742FF6181A5CDB77084AD /* ParkedRack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B458B4165C61C6124720CD /* ParkedRack.swift */; };
+		A81FA18AB47AD47F7B7447F8 /* CallRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF9D52782FDC13CC0133EA8 /* CallRecord.swift */; };
+		AAB6CD9906F313CD9F6E4286 /* TapeSeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8A502D93FAEC53B35ED172 /* TapeSeed.swift */; };
+		AECDBC8155FBB2B7D2F561AD /* LeadingRail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087122D9A717913B8F5E16A5 /* LeadingRail.swift */; };
+		B05000AA150902EA9B6D14AD /* FamilyInvariantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A07FF39603CC73FF39DAC4 /* FamilyInvariantTests.swift */; };
+		B513A4BCE207C7E0618A97B2 /* WhistleSplit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68958A4093153E61081F586C /* WhistleSplit.swift */; };
+		B9ED2257605F07E9EDE3D1C8 /* FixtureMatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311E764C792663C29D3FF5DA /* FixtureMatch.swift */; };
+		C6E252F606381E53FBB4A74C /* BoothCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD5270342E93D5F7A8EF52C /* BoothCard.swift */; };
+		C7B1B52B2358479E2C0F76F2 /* PitchtapeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16056D193CDAD3F0D4557B50 /* PitchtapeApp.swift */; };
+		D3FA5295F1DC836D47F4A6D8 /* PeriodRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B1AA90351620A81EBCFC77F /* PeriodRecord.swift */; };
+		DAE862A4EA0841C9BA624444 /* TapeInk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5641E011ED0B0B2CD8BF7EB0 /* TapeInk.swift */; };
+		E26B78E515C86DC2F06DCE35 /* OpenPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2143B6DC972421FA0172CF18 /* OpenPeriod.swift */; };
+		E923F63A01377DDB0BCA21D6 /* TapeScenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3F78645594BBDAE95CF028 /* TapeScenes.swift */; };
+		EA167D58407D479E13FA563C /* TapeSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386AE01B884ADD77AC79FFD5 /* TapeSchema.swift */; };
+		F33EBE1151F1543C8B927A3A /* CallPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB0ADA9ED5795DA95A4CFC8 /* CallPad.swift */; };
+		F54C7FD5059BC4091E4A8A21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200B96E8A29209D6E7962F18 /* AppDelegate.swift */; };
+		FB58D2D8E8E529B3029A1EAE /* TakeTape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038928EA0C8C3046EDB1EEB7 /* TakeTape.swift */; };
+		FB91FFC1A8067150EE090693 /* FixtureRack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254F85C6EF3CB14C88D50D00 /* FixtureRack.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7CAABF3190D4DD5C80948731 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E6F7164478789C7AE080F612 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F2E4F1F90047A94B8F1E4692;
+			remoteInfo = Pitchtape;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		038928EA0C8C3046EDB1EEB7 /* TakeTape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakeTape.swift; sourceTree = "<group>"; };
+		087122D9A717913B8F5E16A5 /* LeadingRail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadingRail.swift; sourceTree = "<group>"; };
+		0B29C000D2AD8A9A77E22A0A /* ParkedReelPDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkedReelPDF.swift; sourceTree = "<group>"; };
+		16056D193CDAD3F0D4557B50 /* PitchtapeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchtapeApp.swift; sourceTree = "<group>"; };
+		1F16CE50A680778BD293939E /* TapeBevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapeBevel.swift; sourceTree = "<group>"; };
+		200B96E8A29209D6E7962F18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2143B6DC972421FA0172CF18 /* OpenPeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenPeriod.swift; sourceTree = "<group>"; };
+		237C76702C1B987AE41CAE5E /* Pitchtape.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Pitchtape.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		254F85C6EF3CB14C88D50D00 /* FixtureRack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureRack.swift; sourceTree = "<group>"; };
+		311E764C792663C29D3FF5DA /* FixtureMatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureMatch.swift; sourceTree = "<group>"; };
+		37B8E95CA0A32C30DA4C127F /* TapeClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapeClientTests.swift; sourceTree = "<group>"; };
+		386AE01B884ADD77AC79FFD5 /* TapeSchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapeSchema.swift; sourceTree = "<group>"; };
+		4B9B48F2F882A2A1C4C59C55 /* TapeLaneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapeLaneTests.swift; sourceTree = "<group>"; };
+		51B8126D14F79D771CD7C805 /* WhistleReel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhistleReel.swift; sourceTree = "<group>"; };
+		5641E011ED0B0B2CD8BF7EB0 /* TapeInk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapeInk.swift; sourceTree = "<group>"; };
+		58BB52683F9DF583F44EA682 /* TapeClock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapeClock.swift; sourceTree = "<group>"; };
+		594EB295A8A56EB456B9B88C /* APIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfig.swift; sourceTree = "<group>"; };
+		599FD434754B3935C6FC15AA /* TapePrefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapePrefs.swift; sourceTree = "<group>"; };
+		65A3DB466039DC562291A3CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6797DB35A582BC09F93D1E9F /* BoothDesk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoothDesk.swift; sourceTree = "<group>"; };
+		68958A4093153E61081F586C /* WhistleSplit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhistleSplit.swift; sourceTree = "<group>"; };
+		6B1AA90351620A81EBCFC77F /* PeriodRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodRecord.swift; sourceTree = "<group>"; };
+		6C749EFF3B15A2A999F7AD20 /* TapeBooth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapeBooth.swift; sourceTree = "<group>"; };
+		85114EEEFB5D3231587778DB /* CallMark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallMark.swift; sourceTree = "<group>"; };
+		8752C1857A5B24DBFFE3629B /* FirstWhistle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstWhistle.swift; sourceTree = "<group>"; };
+		909B1D1B748B652EB54641C9 /* TapeFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapeFace.swift; sourceTree = "<group>"; };
+		997C0A79698D51C00ED62599 /* TapeLane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapeLane.swift; sourceTree = "<group>"; };
+		9A3F78645594BBDAE95CF028 /* TapeScenes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapeScenes.swift; sourceTree = "<group>"; };
+		9AF9D52782FDC13CC0133EA8 /* CallRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallRecord.swift; sourceTree = "<group>"; };
+		B3D8FB5580DA1B0B20AD6DCD /* BoothDeskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoothDeskTests.swift; sourceTree = "<group>"; };
+		B7A07FF39603CC73FF39DAC4 /* FamilyInvariantTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyInvariantTests.swift; sourceTree = "<group>"; };
+		BAB0ADA9ED5795DA95A4CFC8 /* CallPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallPad.swift; sourceTree = "<group>"; };
+		C28539626B29F35FBA27F20E /* TapeClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapeClient.swift; sourceTree = "<group>"; };
+		C6B458B4165C61C6124720CD /* ParkedRack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkedRack.swift; sourceTree = "<group>"; };
+		CFA4B0855FEBB170CB72D4A9 /* WhistleSplitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhistleSplitTests.swift; sourceTree = "<group>"; };
+		DAD5270342E93D5F7A8EF52C /* BoothCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoothCard.swift; sourceTree = "<group>"; };
+		DE92AB34ACDF208F4A2D828F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		DF972DB61C9111D1F1D8642C /* OnAirBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnAirBoard.swift; sourceTree = "<group>"; };
+		E40D7BF3C74C2D7D2608B2EE /* PitchtapeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchtapeTests.swift; sourceTree = "<group>"; };
+		E44443ED606EEF12C077E466 /* TapeBoothTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapeBoothTests.swift; sourceTree = "<group>"; };
+		E4DC5564AB74AFCA264FA90E /* PitchtapeTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = PitchtapeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC8A502D93FAEC53B35ED172 /* TapeSeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapeSeed.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		350D9366C85952D1C3422573 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				685E395EF1D558C23C1322AC /* Alamofire in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6A3B615CED3133C79BBC74EC /* PitchtapeTests */ = {
+			isa = PBXGroup;
+			children = (
+				B3D8FB5580DA1B0B20AD6DCD /* BoothDeskTests.swift */,
+				B7A07FF39603CC73FF39DAC4 /* FamilyInvariantTests.swift */,
+				E40D7BF3C74C2D7D2608B2EE /* PitchtapeTests.swift */,
+				E44443ED606EEF12C077E466 /* TapeBoothTests.swift */,
+				37B8E95CA0A32C30DA4C127F /* TapeClientTests.swift */,
+				4B9B48F2F882A2A1C4C59C55 /* TapeLaneTests.swift */,
+				CFA4B0855FEBB170CB72D4A9 /* WhistleSplitTests.swift */,
+			);
+			path = PitchtapeTests;
+			sourceTree = "<group>";
+		};
+		704885BE2ABADA44A9D716AD /* Pitchtape */ = {
+			isa = PBXGroup;
+			children = (
+				594EB295A8A56EB456B9B88C /* APIConfig.swift */,
+				200B96E8A29209D6E7962F18 /* AppDelegate.swift */,
+				65A3DB466039DC562291A3CE /* Assets.xcassets */,
+				DE92AB34ACDF208F4A2D828F /* ContentView.swift */,
+				16056D193CDAD3F0D4557B50 /* PitchtapeApp.swift */,
+				FBEF2F60031929107A8CEFA2 /* Call */,
+				A8E298057E234ADC4B806EA8 /* Clock */,
+				CD68B204AE9AD812BAD92BCE /* Period */,
+				ACB355CB79C6AF32AF641912 /* Tape */,
+				8007F45EE429280A724336B8 /* Whistle */,
+			);
+			path = Pitchtape;
+			sourceTree = "<group>";
+		};
+		8007F45EE429280A724336B8 /* Whistle */ = {
+			isa = PBXGroup;
+			children = (
+				C6B458B4165C61C6124720CD /* ParkedRack.swift */,
+				0B29C000D2AD8A9A77E22A0A /* ParkedReelPDF.swift */,
+				51B8126D14F79D771CD7C805 /* WhistleReel.swift */,
+				68958A4093153E61081F586C /* WhistleSplit.swift */,
+			);
+			path = Whistle;
+			sourceTree = "<group>";
+		};
+		96C29C89243A7CF5B0E3D526 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				237C76702C1B987AE41CAE5E /* Pitchtape.app */,
+				E4DC5564AB74AFCA264FA90E /* PitchtapeTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A8E298057E234ADC4B806EA8 /* Clock */ = {
+			isa = PBXGroup;
+			children = (
+				1F16CE50A680778BD293939E /* TapeBevel.swift */,
+				58BB52683F9DF583F44EA682 /* TapeClock.swift */,
+				909B1D1B748B652EB54641C9 /* TapeFace.swift */,
+				5641E011ED0B0B2CD8BF7EB0 /* TapeInk.swift */,
+			);
+			path = Clock;
+			sourceTree = "<group>";
+		};
+		ACB355CB79C6AF32AF641912 /* Tape */ = {
+			isa = PBXGroup;
+			children = (
+				DAD5270342E93D5F7A8EF52C /* BoothCard.swift */,
+				6797DB35A582BC09F93D1E9F /* BoothDesk.swift */,
+				8752C1857A5B24DBFFE3629B /* FirstWhistle.swift */,
+				311E764C792663C29D3FF5DA /* FixtureMatch.swift */,
+				254F85C6EF3CB14C88D50D00 /* FixtureRack.swift */,
+				087122D9A717913B8F5E16A5 /* LeadingRail.swift */,
+				DF972DB61C9111D1F1D8642C /* OnAirBoard.swift */,
+				038928EA0C8C3046EDB1EEB7 /* TakeTape.swift */,
+				6C749EFF3B15A2A999F7AD20 /* TapeBooth.swift */,
+				C28539626B29F35FBA27F20E /* TapeClient.swift */,
+				997C0A79698D51C00ED62599 /* TapeLane.swift */,
+				599FD434754B3935C6FC15AA /* TapePrefs.swift */,
+				9A3F78645594BBDAE95CF028 /* TapeScenes.swift */,
+				386AE01B884ADD77AC79FFD5 /* TapeSchema.swift */,
+				EC8A502D93FAEC53B35ED172 /* TapeSeed.swift */,
+			);
+			path = Tape;
+			sourceTree = "<group>";
+		};
+		C3238F314DEE4BB7D1C72763 = {
+			isa = PBXGroup;
+			children = (
+				704885BE2ABADA44A9D716AD /* Pitchtape */,
+				6A3B615CED3133C79BBC74EC /* PitchtapeTests */,
+				96C29C89243A7CF5B0E3D526 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CD68B204AE9AD812BAD92BCE /* Period */ = {
+			isa = PBXGroup;
+			children = (
+				2143B6DC972421FA0172CF18 /* OpenPeriod.swift */,
+				6B1AA90351620A81EBCFC77F /* PeriodRecord.swift */,
+			);
+			path = Period;
+			sourceTree = "<group>";
+		};
+		FBEF2F60031929107A8CEFA2 /* Call */ = {
+			isa = PBXGroup;
+			children = (
+				85114EEEFB5D3231587778DB /* CallMark.swift */,
+				BAB0ADA9ED5795DA95A4CFC8 /* CallPad.swift */,
+				9AF9D52782FDC13CC0133EA8 /* CallRecord.swift */,
+			);
+			path = Call;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D66E7438BE1C4BFDD1490087 /* PitchtapeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 286217765686482029459F72 /* Build configuration list for PBXNativeTarget "PitchtapeTests" */;
+			buildPhases = (
+				D8D78D67EC3808D623643A4D /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A5700EA8A3C5D6D1581827C6 /* PBXTargetDependency */,
+			);
+			name = PitchtapeTests;
+			packageProductDependencies = (
+			);
+			productName = PitchtapeTests;
+			productReference = E4DC5564AB74AFCA264FA90E /* PitchtapeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F2E4F1F90047A94B8F1E4692 /* Pitchtape */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5C6613CB2B647EBEE2F85AC5 /* Build configuration list for PBXNativeTarget "Pitchtape" */;
+			buildPhases = (
+				852FCA0E0CFA1D233A76284D /* Sources */,
+				426B8AA4F26EA242D4B23818 /* Resources */,
+				350D9366C85952D1C3422573 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Pitchtape;
+			packageProductDependencies = (
+				E96D5786F361727C3D003953 /* Alamofire */,
+			);
+			productName = Pitchtape;
+			productReference = 237C76702C1B987AE41CAE5E /* Pitchtape.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E6F7164478789C7AE080F612 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					D66E7438BE1C4BFDD1490087 = {
+						ProvisioningStyle = Automatic;
+					};
+					F2E4F1F90047A94B8F1E4692 = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = C4641185F542AD3D535E867D /* Build configuration list for PBXProject "Pitchtape" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = C3238F314DEE4BB7D1C72763;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				29768AF7771870E5B6E92023 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 96C29C89243A7CF5B0E3D526 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F2E4F1F90047A94B8F1E4692 /* Pitchtape */,
+				D66E7438BE1C4BFDD1490087 /* PitchtapeTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		426B8AA4F26EA242D4B23818 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				13DC4618155192728D82A044 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		852FCA0E0CFA1D233A76284D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2043639B3FCD63A7C67FF0B9 /* APIConfig.swift in Sources */,
+				F54C7FD5059BC4091E4A8A21 /* AppDelegate.swift in Sources */,
+				C6E252F606381E53FBB4A74C /* BoothCard.swift in Sources */,
+				6D381548C118EF3EBDCCE065 /* BoothDesk.swift in Sources */,
+				1A6E09A44F742E62F8B50A42 /* CallMark.swift in Sources */,
+				F33EBE1151F1543C8B927A3A /* CallPad.swift in Sources */,
+				A81FA18AB47AD47F7B7447F8 /* CallRecord.swift in Sources */,
+				3E5FF6145E6E6399B66BCF69 /* ContentView.swift in Sources */,
+				3A0A5651CA41C42B8D44BDC5 /* FirstWhistle.swift in Sources */,
+				B9ED2257605F07E9EDE3D1C8 /* FixtureMatch.swift in Sources */,
+				FB91FFC1A8067150EE090693 /* FixtureRack.swift in Sources */,
+				AECDBC8155FBB2B7D2F561AD /* LeadingRail.swift in Sources */,
+				151932DE891A81E279D8D600 /* OnAirBoard.swift in Sources */,
+				E26B78E515C86DC2F06DCE35 /* OpenPeriod.swift in Sources */,
+				A61742FF6181A5CDB77084AD /* ParkedRack.swift in Sources */,
+				91D1BB2C531D9F4524AC1D08 /* ParkedReelPDF.swift in Sources */,
+				D3FA5295F1DC836D47F4A6D8 /* PeriodRecord.swift in Sources */,
+				C7B1B52B2358479E2C0F76F2 /* PitchtapeApp.swift in Sources */,
+				FB58D2D8E8E529B3029A1EAE /* TakeTape.swift in Sources */,
+				4014CA7394662CC1F7344656 /* TapeBevel.swift in Sources */,
+				14CCDC34B6CB69DC6D2AFBF6 /* TapeBooth.swift in Sources */,
+				8EE3DB7104AAE8C0D8DE1203 /* TapeClient.swift in Sources */,
+				673F0F6B5501008DF4C7FC56 /* TapeClock.swift in Sources */,
+				1C1A9A77010C81BC0D471F69 /* TapeFace.swift in Sources */,
+				DAE862A4EA0841C9BA624444 /* TapeInk.swift in Sources */,
+				8904AB47924390A704AB92F9 /* TapeLane.swift in Sources */,
+				59911C5BD04BFF9B429AB974 /* TapePrefs.swift in Sources */,
+				E923F63A01377DDB0BCA21D6 /* TapeScenes.swift in Sources */,
+				EA167D58407D479E13FA563C /* TapeSchema.swift in Sources */,
+				AAB6CD9906F313CD9F6E4286 /* TapeSeed.swift in Sources */,
+				4D61A52CCCB8FD3402CDB7CC /* WhistleReel.swift in Sources */,
+				B513A4BCE207C7E0618A97B2 /* WhistleSplit.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D8D78D67EC3808D623643A4D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				900D67807E600727E6B73CFF /* BoothDeskTests.swift in Sources */,
+				B05000AA150902EA9B6D14AD /* FamilyInvariantTests.swift in Sources */,
+				202D81EB4785D523B6BBF9EE /* PitchtapeTests.swift in Sources */,
+				8A5F35BE1790DB198DB82D1D /* TapeBoothTests.swift in Sources */,
+				1D8F67B798ACE107B6C8F1CA /* TapeClientTests.swift in Sources */,
+				29A665AADE14F3C1536405F8 /* TapeLaneTests.swift in Sources */,
+				3DD0FDE4EE10B1EEEFD3666E /* WhistleSplitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A5700EA8A3C5D6D1581827C6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F2E4F1F90047A94B8F1E4692 /* Pitchtape */;
+			targetProxy = 7CAABF3190D4DD5C80948731 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		105268A0B417244403C4CB9A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zalupik.pupiuk.tests;
+				SDKROOT = iphoneos;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pitchtape.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Pitchtape";
+			};
+			name = Debug;
+		};
+		1EC6C058217B1478850C0B0B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Pitchtape;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app does not use the camera.";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zalupik.pupiuk;
+				PRODUCT_NAME = Pitchtape;
+				SDKROOT = iphoneos;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2AFAE179ED968AAACFAD5DEA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.2;
+			};
+			name = Release;
+		};
+		3EA5A1051403619E0E60C962 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.2;
+			};
+			name = Debug;
+		};
+		626ABA0C64830558CFF7B067 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Pitchtape;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app does not use the camera.";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zalupik.pupiuk;
+				PRODUCT_NAME = Pitchtape;
+				SDKROOT = iphoneos;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		8828B2A98D5A9F54196FC418 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zalupik.pupiuk.tests;
+				SDKROOT = iphoneos;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pitchtape.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Pitchtape";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		286217765686482029459F72 /* Build configuration list for PBXNativeTarget "PitchtapeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				105268A0B417244403C4CB9A /* Debug */,
+				8828B2A98D5A9F54196FC418 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		5C6613CB2B647EBEE2F85AC5 /* Build configuration list for PBXNativeTarget "Pitchtape" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1EC6C058217B1478850C0B0B /* Debug */,
+				626ABA0C64830558CFF7B067 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		C4641185F542AD3D535E867D /* Build configuration list for PBXProject "Pitchtape" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3EA5A1051403619E0E60C962 /* Debug */,
+				2AFAE179ED968AAACFAD5DEA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		29768AF7771870E5B6E92023 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/wrandecima-bit/Alamofire";
+			requirement = {
+				kind = revision;
+				revision = 7fdd403089757be2ce6991b287c7bef612c8bd04;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E96D5786F361727C3D003953 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29768AF7771870E5B6E92023 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = E6F7164478789C7AE080F612 /* Project object */;
+}

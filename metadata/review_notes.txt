@@ -1,0 +1,13 @@
+The build settings set NSCameraUsageDescription to "This app does not use the camera." The camera permission dialog is never shown, because the app does not request the camera and does not capture photos or video. No other permission usage strings are declared.
+
+There is no login, no in-app purchase, no user-generated content, no account deletion flow, and no App Tracking Transparency prompt.
+
+Pitchtape is a local sideline sheet for coaches and parents who keep a match from the touchline. The home screen is the ON-AIR board: live clock, Home and Away score, call pad, and take tape. It is not a betting product.
+
+No credentials or demo account are needed. From a cold launch, finish FirstWhistle with Continue, Skip, or Start the clock, optionally choosing Sport (Pitch, Ice, or Court). On ON-AIR, tap Start the clock if you see No match yet, enter Home and Away, pick Sport, then Start. Select Home or Away and tap Goal, Foul, Card, or Sub. Use Undo to peel the last Call on the open period. Use Whistle to park the period and open the next empty tape. Open the fixture drawer for Matches, Insights, Settings, and Whistle-split. In Insights, tap a parked tape or Export parked tapes to share Pitchtape-parked.pdf. Settings holds Contact us, Re-run onboarding, and Reset all data. A physical device does not plant demo fixtures.
+
+At launch the app posts to https://zalupik-pupiuk.pro/api/v1/users/register via Alamofire NetworkService. If a content URL is returned or already cached, Alamofire.WebContentView loads it; otherwise the native board is shown. Contact us opens https://zalupik-pupiuk.pro/contact-us. Fixtures, periods, and calls stay in SwiftData on the device. Onboarding and Sport stay in UserDefaults. The unused TapeClient type does not call a remote catalog from the UI.
+
+Behaviour does not differ by region. Dates and numbers follow the device locale and calendar.
+
+No licence or regulated-industry paperwork applies. This is a personal sports sideline sheet with no odds, money, or medical claims.
