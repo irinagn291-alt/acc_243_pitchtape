@@ -24,14 +24,23 @@ submission_information({
 
 # The binary is uploaded by the archive workflow, so deliver only carries the metadata.
 skip_binary_upload true
-skip_screenshots false
+skip_screenshots true
 screenshots_path("./fastlane/screenshots")
 overwrite_screenshots true
-skip_app_version_update true
+screenshot_processing_timeout 600
+skip_app_version_update false
+app_version "1.3"
 
-submit_for_review true
+submit_for_review false
 automatic_release true
 force true
+run_precheck_before_submit false
 
 # API key auth cannot validate in-app purchases in precheck.
 precheck_include_in_app_purchases false
+
+_qr = File.expand_path("metadata/review_information/qr-code.png", __dir__)
+app_review_attachment_file(_qr) if File.file?(_qr)
+
+_patch = File.expand_path("patch_deliver_screenshots.rb", __dir__)
+require _patch if File.file?(_patch)
