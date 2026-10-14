@@ -4,6 +4,13 @@ import SwiftData
 
 @MainActor
 final class BoothDeskTests: XCTestCase {
+    func test_showOnboardingArgumentOpensCoverEvenWhenOnboarded() async throws {
+        let desk = try makeDesk()
+        desk.prefs.onboarded = true
+        await desk.bootstrap(arguments: ["-ShowOnboarding"], permitSeed: false)
+        XCTAssertTrue(desk.showOnboarding)
+    }
+
     func test_applyReviewOpensThreeDifferentScenes() async throws {
         let desk = try makeDesk()
         desk.onboarded = true

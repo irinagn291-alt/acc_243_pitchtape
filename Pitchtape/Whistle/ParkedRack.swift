@@ -21,37 +21,15 @@ struct ParkedRack: View {
     }
 
     private var emptyPage: some View {
-        VStack(spacing: TapeBevel.space(2)) {
-            TapeArt.image(TapeArt.emptyList, fill: false)
-                .frame(maxWidth: .infinity)
-                .frame(maxHeight: .infinity)
-                .clipShape(TapeBevel.cardShape)
-                .padding(.horizontal, TapeBevel.space(2))
-                .accessibilityHidden(true)
-            Text("No parked tapes yet.")
-                .font(TapeFace.font(.title))
-                .foregroundStyle(TapeInk.ink)
-            Text("Blow the whistle on the live board to seal a period.")
-                .font(TapeFace.font(.body))
-                .foregroundStyle(TapeInk.muted)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, TapeBevel.space(2))
-            Button {
-                desk.closeScene()
-            } label: {
-                Text("Back to the live tape")
-                    .font(TapeFace.font(.headline))
-                    .foregroundStyle(TapeInk.background)
-                    .frame(maxWidth: .infinity, minHeight: TapeBevel.tap)
-                    .background(TapeInk.accent)
-                    .clipShape(TapeBevel.cardShape)
-                    .contentShape(TapeBevel.cardShape)
-            }
-            .buttonStyle(TapePress())
-            .padding(.horizontal, TapeBevel.space(2))
-            .padding(.bottom, TapeBevel.space(2))
+        TapeVacant(
+            art: TapeArt.emptyList,
+            title: "No parked tapes yet.",
+            line: "Blow the whistle on the live board to seal a period.",
+            action: "Back to the live tape"
+        ) {
+            desk.closeScene()
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding(TapeBevel.space(2))
     }
 
     private func errorPage(_ line: String) -> some View {
@@ -95,6 +73,10 @@ struct ParkedRack: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
 
                     tapeRack
+                    if sizeClass == .regular {
+                        boothReadout
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                    }
                 }
                 .padding(.horizontal, TapeBevel.space(2))
                 .padding(.top, TapeBevel.space(1))
@@ -104,48 +86,76 @@ struct ParkedRack: View {
             .scrollBounceBehavior(.basedOnSize)
         }
         .safeAreaInset(edge: .bottom, spacing: 0) {
-            Button {
-                desk.exportParked()
-            } label: {
-                Text("Export parked tapes")
-                    .font(TapeFace.font(.headline))
-                    .foregroundStyle(TapeInk.background)
-                    .frame(maxWidth: .infinity, minHeight: TapeBevel.tap)
-                    .background(TapeInk.accent)
-                    .clipShape(TapeBevel.cardShape)
-                    .contentShape(TapeBevel.cardShape)
+            TapeDock {
+                Button {
+                    desk.exportParked()
+                } label: {
+                    Text("Export parked tapes")
+                        .font(TapeFace.font(.headline))
+                        .foregroundStyle(TapeInk.background)
+                        .frame(maxWidth: .infinity, minHeight: TapeBevel.tap)
+                        .background(TapeInk.accent)
+                        .clipShape(TapeBevel.cardShape)
+                        .contentShape(TapeBevel.cardShape)
+                }
+                .buttonStyle(TapePress(enabled: !desk.isBusy))
+                .disabled(desk.isBusy)
+                .accessibilityLabel("Export parked tapes as PDF")
             }
-            .buttonStyle(TapePress(enabled: !desk.isBusy))
-            .disabled(desk.isBusy)
-            .padding(TapeBevel.space(2))
-            .background(TapeInk.background.ignoresSafeArea(edges: .bottom))
-            .accessibilityLabel("Export parked tapes as PDF")
         }
     }
 
     @ViewBuilder
     private var tapeRack: some View {
-        if sizeClass == .regular {
-            VStack(spacing: TapeBevel.space(1)) {
-                ForEach(Array(stride(from: 0, to: desk.parkedTapes.count, by: 2)), id: \.self) { start in
-                    HStack(alignment: .top, spacing: TapeBevel.space(1)) {
-                        tapeButton(desk.parkedTapes[start])
-                        if start + 1 < desk.parkedTapes.count {
-                            tapeButton(desk.parkedTapes[start + 1])
-                        }
-                    }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                }
+        LazyVGrid(
+            columns: sizeClass == .regular
+                ? [GridItem(.adaptive(minimum: 280), spacing: TapeBevel.space(2))]
+                : [GridItem(.flexible())],
+            alignment: .leading,
+            spacing: TapeBevel.space(2)
+        ) {
+            ForEach(desk.parkedTapes) { period in
+                tapeButton(period)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-        } else {
-            VStack(spacing: TapeBevel.space(1)) {
-                ForEach(desk.parkedTapes) { period in
-                    tapeButton(period)
-                }
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
+        .frame(maxWidth: .infinity, alignment: .topLeading)
+    }
+
+    private var boothReadout: some View {
+        let calls = desk.parkedTapes.reduce(0) { $0 + $1.calls.count }
+        let last = desk.parkedTapes.max { $0.periodIndex < $1.periodIndex }
+        return VStack(alignment: .leading, spacing: TapeBevel.space(1)) {
+            Text("Booth tally")
+                .font(TapeFace.font(.headline))
+                .foregroundStyle(TapeInk.ink)
+            Text("Parked periods stay on this device. Tap a tape above to export one, or export the lot.")
+                .font(TapeFace.font(.body))
+                .foregroundStyle(TapeInk.muted)
+            HStack(spacing: TapeBevel.space(2)) {
+                readoutStat("Parked", TapeStamp.count(desk.parkedTapes.count))
+                readoutStat("Calls", TapeStamp.count(calls))
+                readoutStat("Last clock", last.map { TapeStamp.clock($0.accumulated) } ?? "—")
+            }
+        }
+        .padding(TapeBevel.space(2))
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .background(TapeBevel.plate(TapeBevel.cardShape))
+        .accessibilityElement(children: .combine)
+    }
+
+    private func readoutStat(_ title: String, _ value: String) -> some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text(title)
+                .font(TapeFace.font(.caption))
+                .foregroundStyle(TapeInk.muted)
+                .lineLimit(1)
+            Text(value)
+                .font(TapeFace.font(.title))
+                .foregroundStyle(TapeInk.ink)
+                .lineLimit(1)
+                .minimumScaleFactor(0.7)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 
     private func tapeButton(_ period: OpenPeriod) -> some View {
@@ -159,7 +169,7 @@ struct ParkedRack: View {
             "\(period.homeName) \(TapeFold.scoreText(period)) \(period.awayName), period \(TapeStamp.count(period.periodIndex))"
         )
         .accessibilityHint("Export this parked tape as PDF")
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .frame(maxWidth: .infinity, alignment: .topLeading)
     }
 
     private func tapeFace(_ period: OpenPeriod) -> some View {
@@ -207,19 +217,19 @@ struct ParkedRack: View {
                 Text("No calls on this tape.")
                     .font(TapeFace.font(.body))
                     .foregroundStyle(TapeInk.muted)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                    .frame(maxWidth: .infinity, alignment: .topLeading)
             } else {
                 VStack(alignment: .leading, spacing: TapeBevel.space(1)) {
                     ForEach(marks) { mark in
                         markRow(mark)
-                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                            .frame(maxWidth: .infinity, alignment: .leading)
                     }
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .frame(maxWidth: .infinity)
             }
         }
         .padding(TapeBevel.space(2))
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .frame(maxWidth: .infinity, alignment: .topLeading)
         .background(TapeBevel.plate(TapeBevel.cardShape))
         .contentShape(TapeBevel.cardShape)
     }

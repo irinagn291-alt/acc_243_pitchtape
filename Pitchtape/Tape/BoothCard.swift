@@ -33,34 +33,14 @@ struct BoothCard: View {
     }
 
     private var emptyPage: some View {
-        VStack(spacing: TapeBevel.space(2)) {
-            TapeArt.image(TapeArt.emptyList, fill: false)
-                .frame(maxWidth: .infinity)
-                .frame(maxHeight: .infinity)
-                .clipShape(TapeBevel.cardShape)
-                .padding(.horizontal, TapeBevel.space(2))
-                .accessibilityHidden(true)
-            Text("No settings yet.")
-                .font(TapeFace.font(.title))
-                .foregroundStyle(TapeInk.ink)
-            Text("Set the sport, contact us, or wipe stored matches.")
-                .font(TapeFace.font(.body))
-                .foregroundStyle(TapeInk.muted)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, TapeBevel.space(2))
-            Button {
-                revealForm = true
-            } label: {
-                Text("Open settings")
-                    .font(TapeFace.font(.headline))
-                    .foregroundStyle(TapeInk.background)
-                    .frame(maxWidth: .infinity, minHeight: TapeBevel.tap)
-                    .background(TapeInk.accent)
-                    .clipShape(TapeBevel.cardShape)
-                    .contentShape(TapeBevel.cardShape)
-            }
-            .buttonStyle(TapePress())
-            .padding(.horizontal, TapeBevel.space(2))
+        TapeVacant(
+            art: TapeArt.emptyList,
+            title: "No settings yet.",
+            line: "Set the sport, contact us, or wipe stored matches.",
+            action: "Open settings"
+        ) {
+            revealForm = true
+        } footer: {
             Link(destination: TapePrefs.contactURL) {
                 VStack(spacing: 0) {
                     Text("Contact us")
@@ -76,11 +56,9 @@ struct BoothCard: View {
                 .background(TapeBevel.plate(TapeBevel.cardShape))
                 .contentShape(TapeBevel.cardShape)
             }
-            .padding(.horizontal, TapeBevel.space(2))
-            .padding(.bottom, TapeBevel.space(2))
             .accessibilityLabel("Contact us")
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding(TapeBevel.space(2))
     }
 
     private func errorPage(_ line: String) -> some View {
@@ -134,26 +112,18 @@ struct BoothCard: View {
             if sizeClass == .regular {
                 HStack(alignment: .top, spacing: TapeBevel.space(2)) {
                     sportSurface
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    VStack(spacing: TapeBevel.space(2)) {
-                        boothPlate
-                            .frame(maxHeight: .infinity)
-                        deviceSurface
-                            .frame(maxHeight: .infinity)
-                    }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    boothPlate
+                    deviceSurface
                 }
-                .frame(maxHeight: .infinity)
             } else {
                 sportSurface
                 boothPlate
-                    .frame(maxHeight: .infinity)
                 deviceSurface
             }
         }
         .padding(TapeBevel.space(2))
         .frame(width: width, alignment: .topLeading)
-        .frame(minHeight: height)
+        .frame(minHeight: height, alignment: .topLeading)
     }
 
     private var headerBlock: some View {
@@ -181,10 +151,9 @@ struct BoothCard: View {
                     sportKey(pattern)
                 }
             }
-            .frame(maxHeight: .infinity)
         }
         .padding(TapeBevel.space(2))
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .frame(maxWidth: .infinity, alignment: .topLeading)
         .background(TapeBevel.plate(TapeBevel.cardShape))
     }
 
@@ -201,7 +170,7 @@ struct BoothCard: View {
                 boothStat("Fixtures", value: TapeStamp.count(desk.fixtures.count))
                 boothStat("Parked", value: TapeStamp.count(desk.parkedTapes.count))
             }
-            .frame(maxHeight: .infinity, alignment: .topLeading)
+            .frame(alignment: .topLeading)
             VStack(alignment: .leading, spacing: 0) {
                 Text(openLine)
                     .font(TapeFace.font(.headline))
@@ -216,7 +185,7 @@ struct BoothCard: View {
             .frame(maxWidth: .infinity, minHeight: TapeBevel.tap, alignment: .leading)
         }
         .padding(TapeBevel.space(2))
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .frame(maxWidth: .infinity, alignment: .topLeading)
         .background(TapeBevel.plate(TapeBevel.cardShape))
     }
 
@@ -261,7 +230,7 @@ struct BoothCard: View {
             .buttonStyle(TapePress())
         }
         .padding(TapeBevel.space(2))
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .frame(maxWidth: .infinity, alignment: .topLeading)
         .background(TapeBevel.plate(TapeBevel.cardShape))
     }
 
@@ -283,7 +252,7 @@ struct BoothCard: View {
                     .minimumScaleFactor(0.8)
             }
             .padding(.horizontal, TapeBevel.space(2))
-            .frame(maxWidth: .infinity, minHeight: TapeBevel.tap, maxHeight: .infinity, alignment: .leading)
+            .frame(maxWidth: .infinity, minHeight: TapeBevel.tap + TapeBevel.space(3), alignment: .leading)
             .background(selected ? TapeInk.accent : TapeInk.background)
             .clipShape(TapeBevel.cardShape)
             .overlay(TapeBevel.cardShape.strokeBorder(TapeInk.muted.opacity(0.55), lineWidth: 1))
@@ -324,7 +293,7 @@ struct BoothCard: View {
         }
         .padding(.horizontal, TapeBevel.space(2))
         .padding(.vertical, TapeBevel.space(1))
-        .frame(maxWidth: .infinity, minHeight: TapeBevel.tap, maxHeight: .infinity, alignment: .leading)
+        .frame(maxWidth: .infinity, minHeight: TapeBevel.tap, alignment: .leading)
         .background(TapeInk.background)
         .clipShape(TapeBevel.cardShape)
         .overlay(TapeBevel.cardShape.strokeBorder(TapeInk.muted.opacity(0.55), lineWidth: 1))

@@ -3,11 +3,11 @@ import UIKit
 
 /// Role: Clock. Named steel-blue tokens. Hex lives only on the asset catalog and here.
 enum TapeInk {
-    static let backgroundHex = "#141C1F"
-    static let surfaceHex = "#1C272B"
-    static let inkHex = "#EDF1F2"
-    static let accentHex = "#55C2E7"
-    static let mutedHex = "#91A5AC"
+    static let backgroundHex = "#2E1447"
+    static let surfaceHex = "#4E306B"
+    static let inkHex = "#FFF6FC"
+    static let accentHex = "#982EFF"
+    static let mutedHex = "#BD9EDB"
 
     static let background = Color("ptp_background")
     static let surface = Color("ptp_surface")
@@ -15,11 +15,11 @@ enum TapeInk {
     static let accent = Color("ptp_accent")
     static let muted = Color("ptp_muted")
 
-    static var backgroundUI: UIColor { named("ptp_background", red: 20, green: 28, blue: 31) }
-    static var surfaceUI: UIColor { named("ptp_surface", red: 28, green: 39, blue: 43) }
-    static var inkUI: UIColor { named("ptp_ink", red: 237, green: 241, blue: 242) }
-    static var accentUI: UIColor { named("ptp_accent", red: 85, green: 194, blue: 231) }
-    static var mutedUI: UIColor { named("ptp_muted", red: 145, green: 165, blue: 172) }
+    static var backgroundUI: UIColor { named("ptp_background", red: 46, green: 20, blue: 71) }
+    static var surfaceUI: UIColor { named("ptp_surface", red: 78, green: 48, blue: 107) }
+    static var inkUI: UIColor { named("ptp_ink", red: 255, green: 246, blue: 252) }
+    static var accentUI: UIColor { named("ptp_accent", red: 152, green: 46, blue: 255) }
+    static var mutedUI: UIColor { named("ptp_muted", red: 189, green: 158, blue: 219) }
 
     private static func named(_ name: String, red: CGFloat, green: CGFloat, blue: CGFloat) -> UIColor {
         UIColor(named: name) ?? UIColor(red: red / 255, green: green / 255, blue: blue / 255, alpha: 1)

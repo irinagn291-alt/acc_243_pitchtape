@@ -124,10 +124,12 @@ workflows:
         - bundle_id: "$APP_BUNDLE_ID"
     - deploy-to-bitrise-io@2: {}
   deliver_metadata:
-    summary: Upload App Store metadata and submit for review.
+    summary: Upload App Store metadata and screenshots. Does not submit.
     description: Reads fastlane/metadata from the repository and sends it to
-      App Store Connect. The binary is uploaded by archive_and_export_app, so
-      this workflow carries only the store listing and the review submission.
+      App Store Connect. The factory waits for ingest and drops duplicate
+      screenshots. Submit for review happens in the developer session, so
+      Submissions shows that person rather than the API key. The binary is
+      uploaded by archive_and_export_app.
     steps:
     - git-clone@8: {}
     - script@1:
@@ -181,7 +183,12 @@ workflows:
               gem install fastlane --no-document
             fi
 
-            fastlane deliver --verbose
+            # Deliverfile loads patch_deliver_screenshots.rb (fastlane#30094 /
+            # PR 30150): wait for checksums, delete incomplete rows before retry.
+            # Do not post-process via Spaceship — those calls abort the build
+            # and Grok then "repairs" the wrong API names.
+            # Submit is not done here. An API key is recorded as "API user".
+            fastlane deliver --verbose --submit_for_review false
     - deploy-to-bitrise-io@2: {}
 meta:
   bitrise.io:

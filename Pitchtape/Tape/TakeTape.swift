@@ -45,44 +45,52 @@ struct TakeTape: View {
         let muted = TapeInk.mutedUI
         let inset: CGFloat = 16
         let track = CGRect(
-            x: inset,
-            y: inset + 10,
-            width: max(8, size.width - inset * 2),
-            height: max(8, size.height - inset * 2 - 10)
+            x: inset + 52,
+            y: inset + 18,
+            width: max(8, size.width - inset * 2 - 52),
+            height: max(8, size.height - inset * 2 - 18)
         )
         drawSprockets(context: context, size: size, color: muted)
+
+        let homeLane = CGRect(x: track.minX, y: track.minY, width: track.width, height: track.height / 2)
+        let awayLane = CGRect(x: track.minX, y: track.midY, width: track.width, height: track.height / 2)
+        context.fill(Path(homeLane), with: .color(Color(accent).opacity(0.06)))
+        context.fill(Path(awayLane), with: .color(Color(muted).opacity(0.08)))
+
+        drawLaneLabel(context: context, title: "HOME", at: CGPoint(x: 28, y: homeLane.midY), color: ink)
+        drawLaneLabel(context: context, title: "AWAY", at: CGPoint(x: 28, y: awayLane.midY), color: muted)
 
         var axis = Path()
         axis.move(to: CGPoint(x: track.minX, y: track.midY))
         axis.addLine(to: CGPoint(x: track.maxX, y: track.midY))
         context.stroke(axis, with: .color(Color(muted).opacity(0.7)), lineWidth: 1)
 
+        let elapsed = period?.clock(at: now) ?? 0
+        let span = max(elapsed, period?.calls.map(\.clockAt).max() ?? 0, 1)
+        drawTimeRail(context: context, track: track, span: span, color: muted)
+
         guard let period else { return }
-        let elapsed = period.clock(at: now)
-        let span = max(elapsed, period.calls.map(\.clockAt).max() ?? 0, 1)
         let marks = period.calls.sorted { $0.takeOrder < $1.takeOrder }
 
         for mark in marks {
             let x = track.minX + CGFloat(mark.clockAt / span) * track.width
             let up = mark.side == .home
             let y1 = track.midY
-            let y2 = up ? track.minY + 8 : track.maxY - 8
+            let y2 = up ? track.minY + 10 : track.maxY - 10
             var tick = Path()
             tick.move(to: CGPoint(x: x, y: y1))
             tick.addLine(to: CGPoint(x: x, y: y2))
             context.stroke(tick, with: .color(Color(accent)), lineWidth: 2)
-            let label = TapeCopy.kind(mark.kind)
+            let label = "\(TapeCopy.kind(mark.kind)) \(TapeStamp.clock(mark.clockAt))"
             let resolved = context.resolve(
                 Text(label)
                     .font(TapeFace.font(.caption))
                     .foregroundColor(Color(ink))
             )
-            let textSize = resolved.measure(in: CGSize(width: 72, height: 20))
-            let textOrigin = CGPoint(
-                x: min(max(track.minX, x - textSize.width / 2), track.maxX - textSize.width),
-                y: up ? y2 : y2 - textSize.height
-            )
-            context.draw(resolved, at: CGPoint(x: textOrigin.x, y: textOrigin.y), anchor: .topLeading)
+            let textSize = resolved.measure(in: CGSize(width: 120, height: 20))
+            let labelX = min(max(track.minX + 4, x - textSize.width / 2), track.maxX - textSize.width - 4)
+            let labelY = up ? y2 : y2 - textSize.height
+            context.draw(resolved, at: CGPoint(x: labelX, y: labelY), anchor: .topLeading)
         }
 
         let headX = track.minX + CGFloat(elapsed / span) * track.width
@@ -90,6 +98,40 @@ struct TakeTape: View {
         head.move(to: CGPoint(x: headX, y: track.minY))
         head.addLine(to: CGPoint(x: headX, y: track.maxY))
         context.stroke(head, with: .color(Color(ink)), lineWidth: 1.5)
+
+        let clock = context.resolve(
+            Text(TapeStamp.clock(elapsed))
+                .font(TapeFace.font(.headline))
+                .foregroundColor(Color(accent))
+        )
+        context.draw(clock, at: CGPoint(x: track.maxX - 4, y: 6), anchor: .topTrailing)
+    }
+
+    private func drawLaneLabel(context: GraphicsContext, title: String, at point: CGPoint, color: UIColor) {
+        let resolved = context.resolve(
+            Text(title)
+                .font(TapeFace.font(.caption))
+                .foregroundColor(Color(color).opacity(0.7))
+        )
+        context.draw(resolved, at: point, anchor: .center)
+    }
+
+    private func drawTimeRail(context: GraphicsContext, track: CGRect, span: TimeInterval, color: UIColor) {
+        let steps = 4
+        for index in 0...steps {
+            let fraction = CGFloat(index) / CGFloat(steps)
+            let x = track.minX + fraction * track.width
+            var tick = Path()
+            tick.move(to: CGPoint(x: x, y: track.midY - 6))
+            tick.addLine(to: CGPoint(x: x, y: track.midY + 6))
+            context.stroke(tick, with: .color(Color(color).opacity(0.45)), lineWidth: 1)
+            let stamp = context.resolve(
+                Text(TapeStamp.clock(span * Double(index) / Double(steps)))
+                    .font(TapeFace.font(.caption))
+                    .foregroundColor(Color(color))
+            )
+            context.draw(stamp, at: CGPoint(x: x, y: track.maxY - 2), anchor: .bottom)
+        }
     }
 
     private func drawSprockets(context: GraphicsContext, size: CGSize, color: UIColor) {

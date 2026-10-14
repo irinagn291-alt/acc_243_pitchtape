@@ -1,12 +1,12 @@
 {
-  "originHash" : "da5daa43bbad662c64f73e6334092fb67d863ef0292127f0f2e7134455821826",
+  "originHash" : "95888d4f09a84e50a5f56ea128c17bccdb10f213d311d36e0f4a625e884d67b1",
   "pins" : [
     {
       "identity" : "alamofire",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/wrandecima-bit/Alamofire",
+      "location" : "https://github.com/srfcsthpvf-prog/Alamofire",
       "state" : {
-        "revision" : "7fdd403089757be2ce6991b287c7bef612c8bd04"
+        "revision" : "3ea8e93ec37a3ae5f255afb529ef20f438dd1903"
       }
     }
   ],

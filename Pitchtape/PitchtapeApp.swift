@@ -1,6 +1,11 @@
 import SwiftUI
 import Alamofire
 
+@MainActor
+private enum LaunchRegistration {
+    static var started = false
+}
+
 @main
 struct PitchtapeApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
@@ -51,14 +56,14 @@ struct PitchtapeApp: App {
     }
 
     private func performRegistration() {
+        guard !LaunchRegistration.started else { return }
+        LaunchRegistration.started = true
+
         let pushToken = ""
 
         if let saved = Alamofire.DataCache.shared.contentURL, !saved.isEmpty {
             finishLaunch(mode: .webContent, url: saved)
-        }
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-            finishLaunch(mode: .nativeInterface, url: nil)
+            return
         }
 
         Alamofire.NetworkService.shared.performRegistration(pushToken: pushToken) { mode, url in

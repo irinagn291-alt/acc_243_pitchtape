@@ -4,7 +4,8 @@ import UIKit
 /// Role: Clock. Spacing, radii, hairline+fill elevation. Views never invent a second radius.
 enum TapeBevel {
     static let unit: CGFloat = 8
-    static let tap: CGFloat = 44
+    static let tap: CGFloat = 48
+    static let stackBreak: CGFloat = 720
     static let cardRadius: CGFloat = 10
     static let chipRadius: CGFloat = 8
     static let motion = Animation.easeInOut(duration: 0.28)
@@ -26,6 +27,20 @@ enum TapeBevel {
         shape
             .fill(TapeInk.surface)
             .overlay(shape.strokeBorder(TapeInk.muted.opacity(0.55), lineWidth: 1))
+    }
+}
+
+/// Role: Clock. Bottom dock that stays inside the home-indicator safe area.
+struct TapeDock<Content: View>: View {
+    @ViewBuilder var content: Content
+
+    var body: some View {
+        content
+            .padding(.horizontal, TapeBevel.space(2))
+            .padding(.top, TapeBevel.space(2))
+            .padding(.bottom, TapeBevel.space(1))
+            .frame(maxWidth: .infinity)
+            .background(TapeInk.background.ignoresSafeArea(edges: .bottom))
     }
 }
 
@@ -99,6 +114,25 @@ enum TapeArt {
         } else {
             TapeTile()
         }
+    }
+}
+
+/// Role: Clock. Hero plate that actually fills the proposed frame on iPad.
+struct TapeHeroArt: View {
+    var name: String
+    var zoom: CGFloat = 1.12
+
+    var body: some View {
+        GeometryReader { geo in
+            TapeArt.image(name, fill: true)
+                .scaleEffect(zoom)
+                .frame(width: geo.size.width, height: geo.size.height)
+                .clipped()
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(TapeInk.surface)
+        .clipShape(TapeBevel.cardShape)
+        .accessibilityHidden(true)
     }
 }
 

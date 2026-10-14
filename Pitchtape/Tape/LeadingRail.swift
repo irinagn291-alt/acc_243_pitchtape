@@ -45,7 +45,7 @@ struct LeadingRail: View {
                     Spacer(minLength: TapeBevel.space(2))
                 }
                 .padding(TapeBevel.space(2))
-                .frame(width: min(geo.size.width * 0.82, 400), alignment: .leading)
+                .frame(width: min(geo.size.width * (geo.size.width > 600 ? 0.38 : 0.82), 440), alignment: .leading)
                 .frame(maxHeight: .infinity)
                 .background(TapeInk.surface.ignoresSafeArea())
                 .overlay(alignment: .trailing) {

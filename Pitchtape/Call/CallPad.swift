@@ -4,6 +4,9 @@ import SwiftUI
 @MainActor
 struct CallPad: View {
     @Bindable var desk: BoothDesk
+    @Environment(\.horizontalSizeClass) private var sizeClass
+
+    private var grows: Bool { sizeClass == .regular }
 
     var body: some View {
         VStack(spacing: TapeBevel.space(1)) {
@@ -11,14 +14,17 @@ struct CallPad: View {
                 sideChip(.home)
                 sideChip(.away)
             }
+            .frame(maxHeight: grows ? .infinity : nil)
             HStack(spacing: TapeBevel.space(1)) {
                 callKey(.goal)
                 callKey(.foul)
             }
+            .frame(maxHeight: grows ? .infinity : nil)
             HStack(spacing: TapeBevel.space(1)) {
                 callKey(.card)
                 callKey(.sub)
             }
+            .frame(maxHeight: grows ? .infinity : nil)
             HStack(spacing: TapeBevel.space(1)) {
                 verbKey("Undo", enabled: desk.canUndo, prominent: false) {
                     Task { await desk.undoLast() }
@@ -29,7 +35,9 @@ struct CallPad: View {
                 }
                 .accessibilityLabel("Whistle. Parks this period and opens the next tape")
             }
+            .frame(maxHeight: grows ? .infinity : nil)
         }
+        .frame(maxWidth: .infinity, maxHeight: grows ? .infinity : nil)
     }
 
     private func sideChip(_ side: TapeSide) -> some View {
@@ -40,7 +48,7 @@ struct CallPad: View {
             Text(TapeCopy.side(side))
                 .font(TapeFace.font(.headline))
                 .foregroundStyle(selected ? TapeInk.background : TapeInk.ink)
-                .frame(maxWidth: .infinity, minHeight: TapeBevel.tap)
+                .frame(maxWidth: .infinity, minHeight: TapeBevel.tap, maxHeight: grows ? .infinity : nil)
                 .background(selected ? TapeInk.accent : TapeInk.surface)
                 .clipShape(TapeBevel.chipShape)
                 .overlay(TapeBevel.chipShape.strokeBorder(TapeInk.muted.opacity(0.55), lineWidth: 1))
@@ -67,7 +75,7 @@ struct CallPad: View {
                     .lineLimit(1)
             }
             .foregroundStyle(TapeInk.background)
-            .frame(maxWidth: .infinity, minHeight: TapeBevel.tap)
+            .frame(maxWidth: .infinity, minHeight: TapeBevel.tap, maxHeight: grows ? .infinity : nil)
             .background(enabled ? TapeInk.accent : TapeInk.muted)
             .clipShape(TapeBevel.cardShape)
             .overlay(TapeBevel.cardShape.strokeBorder(TapeInk.ink.opacity(0.18), lineWidth: 1))
@@ -89,7 +97,7 @@ struct CallPad: View {
             Text(title)
                 .font(TapeFace.font(.headline))
                 .foregroundStyle(prominent ? TapeInk.background : TapeInk.ink)
-                .frame(maxWidth: .infinity, minHeight: TapeBevel.tap)
+                .frame(maxWidth: .infinity, minHeight: TapeBevel.tap, maxHeight: grows ? .infinity : nil)
                 .background(prominent ? (enabled ? TapeInk.accent : TapeInk.muted) : TapeInk.surface)
                 .clipShape(TapeBevel.cardShape)
                 .overlay(TapeBevel.cardShape.strokeBorder(TapeInk.muted.opacity(0.55), lineWidth: 1))

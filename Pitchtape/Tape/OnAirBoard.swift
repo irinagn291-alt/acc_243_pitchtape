@@ -5,9 +5,25 @@ import SwiftUI
 struct OnAirBoard: View {
     @Bindable var desk: BoothDesk
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.horizontalSizeClass) private var sizeClass
     @State private var showKickoff = false
+    @State private var kickoffDetent: PresentationDetent = .large
+
+    private var isRegular: Bool { sizeClass == .regular }
 
     var body: some View {
+        Group {
+            if desk.showOnboarding {
+                FirstWhistle { sport in
+                    desk.finishOnboarding(sport: sport)
+                }
+            } else {
+                liveRoot
+            }
+        }
+    }
+
+    private var liveRoot: some View {
         ZStack {
             TapeInk.background.ignoresSafeArea()
             boardColumn
@@ -34,15 +50,14 @@ struct OnAirBoard: View {
         }
         .animation(reduceMotion ? TapeBevel.fade : TapeBevel.motion, value: desk.drawerOpen)
         .animation(reduceMotion ? TapeBevel.fade : TapeBevel.motion, value: desk.scene)
-        .fullScreenCover(isPresented: $desk.showOnboarding) {
-            FirstWhistle { sport in
-                desk.finishOnboarding(sport: sport)
-            }
-        }
         .sheet(isPresented: $showKickoff) {
             KickoffSheet(desk: desk, sport: desk.prefs.sport)
+                .presentationDetents([.medium, .large], selection: $kickoffDetent)
                 .presentationDragIndicator(.visible)
                 .presentationBackground(TapeInk.background)
+        }
+        .onChange(of: showKickoff) { _, open in
+            if open { kickoffDetent = .large }
         }
         .sheet(isPresented: Binding(
             get: { desk.sharePDF != nil },
@@ -75,7 +90,7 @@ struct OnAirBoard: View {
     private var header: some View {
         VStack(alignment: .leading, spacing: TapeBevel.space(1)) {
             TapeArt.image(TapeArt.headerDecor)
-                .frame(height: TapeBevel.space(7))
+                .frame(height: TapeBevel.space(isRegular ? 10 : 7))
                 .frame(maxWidth: .infinity)
                 .clipped()
                 .clipShape(TapeBevel.cardShape)
@@ -117,8 +132,8 @@ struct OnAirBoard: View {
             Text(desk.openPeriod == nil ? "Standby" : "Live tape")
                 .font(TapeFace.font(.caption))
                 .foregroundStyle(desk.openPeriod == nil ? TapeInk.muted : TapeInk.accent)
-                .padding(.horizontal, TapeBevel.space(1))
-                .frame(minHeight: TapeBevel.tap)
+                .padding(.horizontal, TapeBevel.space(2))
+                .frame(minWidth: TapeBevel.tap, minHeight: TapeBevel.tap)
                 .background(TapeBevel.plate(TapeBevel.chipShape))
                 .contentShape(TapeBevel.chipShape)
         }
@@ -128,14 +143,45 @@ struct OnAirBoard: View {
     }
 
     private var liveBoard: some View {
+        Group {
+            if isRegular {
+                regularBoard
+            } else {
+                compactBoard
+            }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+
+    private var compactBoard: some View {
         VStack(spacing: TapeBevel.space(1)) {
             scoreStrip
             CallPad(desk: desk)
+                .layoutPriority(1)
             TakeTape(period: desk.openPeriod)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             parkedStrip
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+
+    private var regularBoard: some View {
+        GeometryReader { geo in
+            let padWidth = min(max(geo.size.width * 0.42, 280), 420)
+            VStack(spacing: TapeBevel.space(1)) {
+                scoreStrip
+                HStack(alignment: .top, spacing: TapeBevel.space(1)) {
+                    CallPad(desk: desk)
+                        .frame(width: padWidth)
+                        .frame(maxHeight: .infinity)
+                    TakeTape(period: desk.openPeriod)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .frame(minHeight: 140)
+                }
+                parkedStrip
+            }
+            .frame(width: geo.size.width, height: geo.size.height)
+        }
     }
 
     private var scoreStrip: some View {
@@ -156,6 +202,10 @@ struct OnAirBoard: View {
                         .foregroundStyle(TapeInk.accent)
                         .lineLimit(1)
                     Text(periodLine(period))
+                        .font(TapeFace.font(.caption))
+                        .foregroundStyle(TapeInk.muted)
+                        .lineLimit(1)
+                    Text(lastMarkLine(period))
                         .font(TapeFace.font(.caption))
                         .foregroundStyle(TapeInk.muted)
                         .lineLimit(1)
@@ -193,6 +243,22 @@ struct OnAirBoard: View {
     private func periodLine(_ period: OpenPeriod?) -> String {
         guard let period else { return "Standby" }
         return "Period \(TapeStamp.count(period.periodIndex)) · \(TapeCopy.sport(period.sport))"
+    }
+
+    private func lastMarkLine(_ period: OpenPeriod?) -> String {
+        guard let call = period?.calls.max(by: { $0.takeOrder < $1.takeOrder }) else {
+            return "No mark on this tape."
+        }
+        return "Last mark · \(markName(call.kind)) \(TapeStamp.clock(call.clockAt))"
+    }
+
+    private func markName(_ kind: CallKind) -> String {
+        switch kind {
+        case .goal: "Goal"
+        case .foul: "Foul"
+        case .card: "Card"
+        case .sub: "Sub"
+        }
     }
 
     private var parkedStrip: some View {
@@ -235,34 +301,14 @@ struct OnAirBoard: View {
     }
 
     private var emptyPage: some View {
-        VStack(spacing: TapeBevel.space(2)) {
-            TapeArt.image(TapeArt.emptyHome, fill: false)
-                .frame(maxWidth: .infinity)
-                .frame(maxHeight: .infinity)
-                .clipShape(TapeBevel.cardShape)
-                .accessibilityHidden(true)
-            Text("No match yet.")
-                .font(TapeFace.font(.title))
-                .foregroundStyle(TapeInk.ink)
-                .multilineTextAlignment(.center)
-            Text("Start the clock.")
-                .font(TapeFace.font(.body))
-                .foregroundStyle(TapeInk.muted)
-                .multilineTextAlignment(.center)
-            Button {
-                showKickoff = true
-            } label: {
-                Text("Start the clock")
-                    .font(TapeFace.font(.headline))
-                    .foregroundStyle(TapeInk.background)
-                    .frame(maxWidth: .infinity, minHeight: TapeBevel.tap)
-                    .background(TapeInk.accent)
-                    .clipShape(TapeBevel.cardShape)
-                    .contentShape(TapeBevel.cardShape)
-            }
-            .buttonStyle(TapePress())
+        TapeVacant(
+            art: TapeArt.emptyHome,
+            title: "No match yet.",
+            line: "Start the clock.",
+            action: "Start the clock"
+        ) {
+            showKickoff = true
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
     private func faultBanner(_ line: String) -> some View {
@@ -357,31 +403,13 @@ struct ChestFaultBoard: View {
     var retry: () -> Void
 
     var body: some View {
-        VStack(spacing: TapeBevel.space(2)) {
-            TapeArt.image(TapeArt.emptyHome, fill: false)
-                .frame(maxWidth: .infinity)
-                .frame(maxHeight: .infinity)
-                .clipShape(TapeBevel.cardShape)
-                .accessibilityHidden(true)
-            Text("The tape chest could not open.")
-                .font(TapeFace.font(.title))
-                .foregroundStyle(TapeInk.ink)
-                .multilineTextAlignment(.center)
-            Text("Retry keeps the board local. Nothing is sent away.")
-                .font(TapeFace.font(.body))
-                .foregroundStyle(TapeInk.muted)
-                .multilineTextAlignment(.center)
-            Button(action: retry) {
-                Text("Retry")
-                    .font(TapeFace.font(.headline))
-                    .foregroundStyle(TapeInk.background)
-                    .frame(maxWidth: .infinity, minHeight: TapeBevel.tap)
-                    .background(TapeInk.accent)
-                    .clipShape(TapeBevel.cardShape)
-                    .contentShape(TapeBevel.cardShape)
-            }
-            .buttonStyle(TapePress())
-        }
+        TapeVacant(
+            art: TapeArt.emptyHome,
+            title: "The tape chest could not open.",
+            line: "Retry keeps the board local. Nothing is sent away.",
+            action: "Retry",
+            actionHandler: retry
+        )
         .padding(TapeBevel.space(2))
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(TapeInk.background.ignoresSafeArea())

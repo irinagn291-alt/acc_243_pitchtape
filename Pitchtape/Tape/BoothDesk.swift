@@ -70,7 +70,9 @@ final class BoothDesk {
             }
         }
         onboarded = prefs.onboarded
-        if onboarded {
+        if arguments.contains("-ShowOnboarding") {
+            showOnboarding = true
+        } else if onboarded {
             applyReview(arguments: arguments)
         } else {
             showOnboarding = true

@@ -19,8 +19,35 @@ enum TapeFace {
     static func uiFont(_ step: Step) -> UIFont {
         let style = textStyle(step)
         let pointSize = UIFont.preferredFont(forTextStyle: style).pointSize
-        let base = UIFont(name: "DINAlternate-Bold", size: pointSize) ?? UIFont.preferredFont(forTextStyle: style)
-        return UIFontMetrics(forTextStyle: style).scaledFont(for: base)
+        let system = UIFont.preferredFont(forTextStyle: style)
+        guard let din = UIFont(name: "DINAlternate-Bold", size: pointSize) else {
+            return UIFontMetrics(forTextStyle: style).scaledFont(for: system)
+        }
+        let cascaded = UIFont(
+            descriptor: din.fontDescriptor.addingAttributes([
+                .cascadeList: [system.fontDescriptor]
+            ]),
+            size: pointSize
+        )
+        return UIFontMetrics(forTextStyle: style).scaledFont(for: cascaded)
+    }
+
+    /// DIN Alternate keeps a tight space. En-space keeps words readable on a dark plate.
+    static func aired(_ text: String, step: Step) -> AttributedString {
+        let face = Font(uiFont(step))
+        var result = AttributedString()
+        let parts = text.split(separator: " ", omittingEmptySubsequences: false)
+        for (index, part) in parts.enumerated() {
+            var piece = AttributedString(String(part))
+            piece.font = face
+            result.append(piece)
+            if index < parts.count - 1 {
+                var gap = AttributedString("\u{2002}")
+                gap.font = face
+                result.append(gap)
+            }
+        }
+        return result
     }
 
     private static func textStyle(_ step: Step) -> UIFont.TextStyle {

@@ -5,6 +5,7 @@ import SwiftUI
 struct FixtureRack: View {
     @Bindable var desk: BoothDesk
     var startKickoff: () -> Void
+    @Environment(\.horizontalSizeClass) private var sizeClass
 
     var body: some View {
         let _ = desk.dayAnchor
@@ -22,35 +23,14 @@ struct FixtureRack: View {
     }
 
     private var emptyPage: some View {
-        VStack(spacing: TapeBevel.space(2)) {
-            TapeArt.image(TapeArt.emptyList, fill: false)
-                .frame(maxWidth: .infinity)
-                .frame(maxHeight: .infinity)
-                .clipShape(TapeBevel.cardShape)
-                .padding(.horizontal, TapeBevel.space(2))
-                .accessibilityHidden(true)
-            Text("No fixtures yet.")
-                .font(TapeFace.font(.title))
-                .foregroundStyle(TapeInk.ink)
-            Text("Start a match so the live tape has a home and an away.")
-                .font(TapeFace.font(.body))
-                .foregroundStyle(TapeInk.muted)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, TapeBevel.space(2))
-            Button(action: startKickoff) {
-                Text("Start a match")
-                    .font(TapeFace.font(.headline))
-                    .foregroundStyle(TapeInk.background)
-                    .frame(maxWidth: .infinity, minHeight: TapeBevel.tap)
-                    .background(TapeInk.accent)
-                    .clipShape(TapeBevel.cardShape)
-                    .contentShape(TapeBevel.cardShape)
-            }
-            .buttonStyle(TapePress())
-            .padding(.horizontal, TapeBevel.space(2))
-            .padding(.bottom, TapeBevel.space(2))
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        TapeVacant(
+            art: TapeArt.emptyList,
+            title: "No fixtures yet.",
+            line: "Start a match so the live tape has a home and an away.",
+            action: "Start a match",
+            actionHandler: startKickoff
+        )
+        .padding(TapeBevel.space(2))
     }
 
     private func errorPage(_ line: String) -> some View {
@@ -80,41 +60,67 @@ struct FixtureRack: View {
     }
 
     private var populated: some View {
-        List {
-            ForEach(desk.fixtures) { match in
-                Button {
-                    desk.resume(match)
-                } label: {
-                    row(match)
+        Group {
+            if sizeClass == .regular {
+                GeometryReader { geo in
+                    ScrollView {
+                        LazyVGrid(
+                            columns: [GridItem(.adaptive(minimum: 280), spacing: TapeBevel.space(2))],
+                            spacing: TapeBevel.space(2)
+                        ) {
+                            ForEach(desk.fixtures) { match in
+                                Button {
+                                    desk.resume(match)
+                                } label: {
+                                    row(match)
+                                }
+                                .buttonStyle(TapePress())
+                            }
+                        }
+                        .padding(TapeBevel.space(2))
+                        .frame(maxWidth: .infinity, minHeight: geo.size.height, alignment: .top)
+                    }
+                    .scrollIndicators(.visible)
+                    .scrollBounceBehavior(.basedOnSize)
                 }
-                .buttonStyle(TapePress())
-                .listRowInsets(EdgeInsets(
-                    top: TapeBevel.space(1),
-                    leading: TapeBevel.space(2),
-                    bottom: TapeBevel.space(1),
-                    trailing: TapeBevel.space(2)
-                ))
-                .listRowBackground(TapeInk.background)
-                .listRowSeparatorTint(TapeInk.muted.opacity(0.4))
+            } else {
+                List {
+                    ForEach(desk.fixtures) { match in
+                        Button {
+                            desk.resume(match)
+                        } label: {
+                            row(match)
+                        }
+                        .buttonStyle(TapePress())
+                        .listRowInsets(EdgeInsets(
+                            top: TapeBevel.space(1),
+                            leading: TapeBevel.space(2),
+                            bottom: TapeBevel.space(1),
+                            trailing: TapeBevel.space(2)
+                        ))
+                        .listRowBackground(TapeInk.background)
+                        .listRowSeparatorTint(TapeInk.muted.opacity(0.4))
+                    }
+                }
+                .listStyle(.plain)
+                .scrollContentBackground(.hidden)
+                .background(TapeInk.background)
+                .contentMargins(.bottom, TapeBevel.space(3))
             }
         }
-        .listStyle(.plain)
-        .scrollContentBackground(.hidden)
-        .background(TapeInk.background)
-        .contentMargins(.bottom, TapeBevel.space(3))
         .safeAreaInset(edge: .bottom, spacing: 0) {
-            Button(action: startKickoff) {
-                Text("Start a match")
-                    .font(TapeFace.font(.headline))
-                    .foregroundStyle(TapeInk.background)
-                    .frame(maxWidth: .infinity, minHeight: TapeBevel.tap)
-                    .background(TapeInk.accent)
-                    .clipShape(TapeBevel.cardShape)
-                    .contentShape(TapeBevel.cardShape)
+            TapeDock {
+                Button(action: startKickoff) {
+                    Text("Start a match")
+                        .font(TapeFace.font(.headline))
+                        .foregroundStyle(TapeInk.background)
+                        .frame(maxWidth: .infinity, minHeight: TapeBevel.tap)
+                        .background(TapeInk.accent)
+                        .clipShape(TapeBevel.cardShape)
+                        .contentShape(TapeBevel.cardShape)
+                }
+                .buttonStyle(TapePress())
             }
-            .buttonStyle(TapePress())
-            .padding(TapeBevel.space(2))
-            .background(TapeInk.background.ignoresSafeArea(edges: .bottom))
         }
     }
 
@@ -177,6 +183,12 @@ struct KickoffSheet: View {
         case away
     }
 
+    private var canStart: Bool {
+        !desk.isBusy
+            && !home.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+            && !away.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
+
     var body: some View {
         NavigationStack {
             Form {
@@ -206,6 +218,29 @@ struct KickoffSheet: View {
             .tint(TapeInk.accent)
             .navigationTitle("Start the clock")
             .navigationBarTitleDisplayMode(.inline)
+            .safeAreaInset(edge: .bottom, spacing: 0) {
+                TapeDock {
+                    Button {
+                        Task {
+                            await desk.startFixture(home: home, away: away, sport: sport)
+                            if desk.fault == nil {
+                                dismiss()
+                            }
+                        }
+                    } label: {
+                        Text("Start")
+                            .font(TapeFace.font(.headline))
+                            .foregroundStyle(TapeInk.background)
+                            .frame(maxWidth: .infinity, minHeight: TapeBevel.tap)
+                            .background(canStart ? TapeInk.accent : TapeInk.muted)
+                            .clipShape(TapeBevel.cardShape)
+                            .contentShape(TapeBevel.cardShape)
+                    }
+                    .buttonStyle(TapePress(enabled: canStart))
+                    .disabled(!canStart)
+                    .accessibilityLabel("Start the clock")
+                }
+            }
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Close") { dismiss() }
@@ -224,7 +259,7 @@ struct KickoffSheet: View {
                         }
                     }
                     .font(TapeFace.font(.headline))
-                    .disabled(desk.isBusy || home.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || away.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                    .disabled(!canStart)
                     .frame(minWidth: TapeBevel.tap, minHeight: TapeBevel.tap)
                     .contentShape(Rectangle())
                 }

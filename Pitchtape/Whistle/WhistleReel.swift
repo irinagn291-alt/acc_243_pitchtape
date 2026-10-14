@@ -4,6 +4,7 @@ import SwiftUI
 @MainActor
 struct WhistleReel: View {
     @Bindable var desk: BoothDesk
+    @Environment(\.horizontalSizeClass) private var sizeClass
 
     var body: some View {
         Group {
@@ -44,63 +45,106 @@ struct WhistleReel: View {
     }
 
     private var populated: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: TapeBevel.space(2)) {
-                TapeArt.image(TapeArt.twistHero, fill: false)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: TapeBevel.space(22))
-                    .clipShape(TapeBevel.cardShape)
-                    .accessibilityHidden(true)
-                Text("Whistle-split tape")
-                    .font(TapeFace.font(.title))
-                    .foregroundStyle(TapeInk.ink)
-                Text("A tap always writes a Call on the open tape. The whistle parks that period and opens the next empty tape. Undo peels only the last Call on the open period.")
-                    .font(TapeFace.font(.body))
-                    .foregroundStyle(TapeInk.muted)
-                HStack(spacing: TapeBevel.space(2)) {
-                    stat("Open", desk.openPeriod == nil ? "None" : "Period \(TapeStamp.count(desk.openPeriod?.periodIndex ?? 0))")
-                    stat("Parked", TapeStamp.count(desk.parkedTapes.count))
+        Group {
+            if sizeClass == .regular {
+                HStack(alignment: .top, spacing: TapeBevel.space(2)) {
+                    leadColumn
+                    trailColumn
                 }
                 .padding(TapeBevel.space(2))
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .background(TapeBevel.plate(TapeBevel.cardShape))
-                if desk.parkedTapes.isEmpty {
-                    Text("No period has been whistled yet. The live board still holds the open tape.")
-                        .font(TapeFace.font(.body))
-                        .foregroundStyle(TapeInk.muted)
-                } else {
-                    ForEach(desk.parkedTapes) { period in
-                        Button {
-                            desk.exportParked([period])
-                        } label: {
-                            markRow(period)
-                        }
-                        .buttonStyle(TapePress())
-                        .accessibilityLabel("\(period.homeName) period \(TapeStamp.count(period.periodIndex))")
-                        .accessibilityHint("Export this parked tape as PDF")
+            } else {
+                ScrollView {
+                    VStack(alignment: .leading, spacing: TapeBevel.space(2)) {
+                        TapeHeroArt(name: TapeArt.twistHero)
+                            .frame(height: TapeBevel.space(22))
+                        copyBlock
+                        statPlate
+                        parkedList
                     }
+                    .padding(TapeBevel.space(2))
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
+                .scrollIndicators(.visible)
+                .contentMargins(.bottom, TapeBevel.space(3))
             }
-            .padding(TapeBevel.space(2))
-            .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .safeAreaInset(edge: .bottom, spacing: 0) {
+            TapeDock {
+                Button {
+                    desk.closeScene()
+                } label: {
+                    Text("Back to the live tape")
+                        .font(TapeFace.font(.headline))
+                        .foregroundStyle(TapeInk.background)
+                        .frame(maxWidth: .infinity, minHeight: TapeBevel.tap)
+                        .background(TapeInk.accent)
+                        .clipShape(TapeBevel.cardShape)
+                        .contentShape(TapeBevel.cardShape)
+                }
+                .buttonStyle(TapePress())
+            }
+        }
+    }
+
+    private var leadColumn: some View {
+        VStack(alignment: .leading, spacing: TapeBevel.space(2)) {
+            TapeHeroArt(name: TapeArt.twistHero)
+            copyBlock
+            statPlate
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+    }
+
+    private var trailColumn: some View {
+        ScrollView {
+            parkedList
         }
         .scrollIndicators(.visible)
-        .contentMargins(.bottom, TapeBevel.space(3))
-        .safeAreaInset(edge: .bottom, spacing: 0) {
-            Button {
-                desk.closeScene()
-            } label: {
-                Text("Back to the live tape")
-                    .font(TapeFace.font(.headline))
-                    .foregroundStyle(TapeInk.background)
-                    .frame(maxWidth: .infinity, minHeight: TapeBevel.tap)
-                    .background(TapeInk.accent)
-                    .clipShape(TapeBevel.cardShape)
-                    .contentShape(TapeBevel.cardShape)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+
+    private var copyBlock: some View {
+        VStack(alignment: .leading, spacing: TapeBevel.space(1)) {
+            Text("Whistle-split tape")
+                .font(TapeFace.font(.title))
+                .foregroundStyle(TapeInk.ink)
+            Text("A tap always writes a Call on the open tape. The whistle parks that period and opens the next empty tape. Undo peels only the last Call on the open period.")
+                .font(TapeFace.font(.body))
+                .foregroundStyle(TapeInk.muted)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private var statPlate: some View {
+        HStack(spacing: TapeBevel.space(2)) {
+            stat("Open", desk.openPeriod == nil ? "None" : "Period \(TapeStamp.count(desk.openPeriod?.periodIndex ?? 0))")
+            stat("Parked", TapeStamp.count(desk.parkedTapes.count))
+        }
+        .padding(TapeBevel.space(2))
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(TapeBevel.plate(TapeBevel.cardShape))
+    }
+
+    @ViewBuilder
+    private var parkedList: some View {
+        if desk.parkedTapes.isEmpty {
+            Text("No period has been whistled yet. The live board still holds the open tape.")
+                .font(TapeFace.font(.body))
+                .foregroundStyle(TapeInk.muted)
+                .frame(maxWidth: .infinity, alignment: .leading)
+        } else {
+            VStack(spacing: TapeBevel.space(1)) {
+                ForEach(desk.parkedTapes) { period in
+                    Button {
+                        desk.exportParked([period])
+                    } label: {
+                        markRow(period)
+                    }
+                    .buttonStyle(TapePress())
+                    .accessibilityLabel("\(period.homeName) period \(TapeStamp.count(period.periodIndex))")
+                    .accessibilityHint("Export this parked tape as PDF")
+                }
             }
-            .buttonStyle(TapePress())
-            .padding(TapeBevel.space(2))
-            .background(TapeInk.background.ignoresSafeArea(edges: .bottom))
         }
     }
 
