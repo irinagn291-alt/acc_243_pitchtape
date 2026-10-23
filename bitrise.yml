@@ -159,6 +159,11 @@ workflows:
             find fastlane/metadata -name name.txt -delete
             echo "Dropped name.txt so deliver will not post a listing name."
 
+            # App Review notes go out only from Process 2.1, through the API.
+            # A normal release must not post them.
+            find fastlane/metadata -path '*/review_information/notes.txt' -delete
+            echo "Dropped App Review notes so deliver will not post them."
+
             PHONE="fastlane/metadata/review_information/phone_number.txt"
             if [ ! -f "$PHONE" ]; then
               echo "No App Review phone. phone_number.txt is missing — paste an E.164 number and re-run deliver." >&2

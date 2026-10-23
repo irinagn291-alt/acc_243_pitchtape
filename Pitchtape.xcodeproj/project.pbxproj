@@ -14,7 +14,6 @@
 		1C1A9A77010C81BC0D471F69 /* TapeFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909B1D1B748B652EB54641C9 /* TapeFace.swift */; };
 		1D8F67B798ACE107B6C8F1CA /* TapeClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B8E95CA0A32C30DA4C127F /* TapeClientTests.swift */; };
 		202D81EB4785D523B6BBF9EE /* PitchtapeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40D7BF3C74C2D7D2608B2EE /* PitchtapeTests.swift */; };
-		2043639B3FCD63A7C67FF0B9 /* APIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594EB295A8A56EB456B9B88C /* APIConfig.swift */; };
 		29A665AADE14F3C1536405F8 /* TapeLaneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9B48F2F882A2A1C4C59C55 /* TapeLaneTests.swift */; };
 		3A0A5651CA41C42B8D44BDC5 /* FirstWhistle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8752C1857A5B24DBFFE3629B /* FirstWhistle.swift */; };
 		3DD0FDE4EE10B1EEEFD3666E /* WhistleSplitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA4B0855FEBB170CB72D4A9 /* WhistleSplitTests.swift */; };
@@ -23,7 +22,6 @@
 		4D61A52CCCB8FD3402CDB7CC /* WhistleReel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B8126D14F79D771CD7C805 /* WhistleReel.swift */; };
 		59911C5BD04BFF9B429AB974 /* TapePrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599FD434754B3935C6FC15AA /* TapePrefs.swift */; };
 		673F0F6B5501008DF4C7FC56 /* TapeClock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BB52683F9DF583F44EA682 /* TapeClock.swift */; };
-		685E395EF1D558C23C1322AC /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = E96D5786F361727C3D003953 /* Alamofire */; };
 		6D381548C118EF3EBDCCE065 /* BoothDesk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6797DB35A582BC09F93D1E9F /* BoothDesk.swift */; };
 		8904AB47924390A704AB92F9 /* TapeLane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997C0A79698D51C00ED62599 /* TapeLane.swift */; };
 		8A5F35BE1790DB198DB82D1D /* TapeBoothTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44443ED606EEF12C077E466 /* TapeBoothTests.swift */; };
@@ -45,7 +43,6 @@
 		E923F63A01377DDB0BCA21D6 /* TapeScenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3F78645594BBDAE95CF028 /* TapeScenes.swift */; };
 		EA167D58407D479E13FA563C /* TapeSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386AE01B884ADD77AC79FFD5 /* TapeSchema.swift */; };
 		F33EBE1151F1543C8B927A3A /* CallPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB0ADA9ED5795DA95A4CFC8 /* CallPad.swift */; };
-		F54C7FD5059BC4091E4A8A21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200B96E8A29209D6E7962F18 /* AppDelegate.swift */; };
 		FB58D2D8E8E529B3029A1EAE /* TakeTape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038928EA0C8C3046EDB1EEB7 /* TakeTape.swift */; };
 		FB91FFC1A8067150EE090693 /* FixtureRack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254F85C6EF3CB14C88D50D00 /* FixtureRack.swift */; };
 /* End PBXBuildFile section */
@@ -66,7 +63,6 @@
 		0B29C000D2AD8A9A77E22A0A /* ParkedReelPDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkedReelPDF.swift; sourceTree = "<group>"; };
 		16056D193CDAD3F0D4557B50 /* PitchtapeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchtapeApp.swift; sourceTree = "<group>"; };
 		1F16CE50A680778BD293939E /* TapeBevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapeBevel.swift; sourceTree = "<group>"; };
-		200B96E8A29209D6E7962F18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2143B6DC972421FA0172CF18 /* OpenPeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenPeriod.swift; sourceTree = "<group>"; };
 		237C76702C1B987AE41CAE5E /* Pitchtape.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Pitchtape.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		254F85C6EF3CB14C88D50D00 /* FixtureRack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureRack.swift; sourceTree = "<group>"; };
@@ -77,7 +73,6 @@
 		51B8126D14F79D771CD7C805 /* WhistleReel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhistleReel.swift; sourceTree = "<group>"; };
 		5641E011ED0B0B2CD8BF7EB0 /* TapeInk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapeInk.swift; sourceTree = "<group>"; };
 		58BB52683F9DF583F44EA682 /* TapeClock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapeClock.swift; sourceTree = "<group>"; };
-		594EB295A8A56EB456B9B88C /* APIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfig.swift; sourceTree = "<group>"; };
 		599FD434754B3935C6FC15AA /* TapePrefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapePrefs.swift; sourceTree = "<group>"; };
 		65A3DB466039DC562291A3CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6797DB35A582BC09F93D1E9F /* BoothDesk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoothDesk.swift; sourceTree = "<group>"; };
@@ -105,17 +100,6 @@
 		EC8A502D93FAEC53B35ED172 /* TapeSeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapeSeed.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFrameworksBuildPhase section */
-		350D9366C85952D1C3422573 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				685E395EF1D558C23C1322AC /* Alamofire in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
 /* Begin PBXGroup section */
 		6A3B615CED3133C79BBC74EC /* PitchtapeTests */ = {
 			isa = PBXGroup;
@@ -134,8 +118,6 @@
 		704885BE2ABADA44A9D716AD /* Pitchtape */ = {
 			isa = PBXGroup;
 			children = (
-				594EB295A8A56EB456B9B88C /* APIConfig.swift */,
-				200B96E8A29209D6E7962F18 /* AppDelegate.swift */,
 				65A3DB466039DC562291A3CE /* Assets.xcassets */,
 				DE92AB34ACDF208F4A2D828F /* ContentView.swift */,
 				16056D193CDAD3F0D4557B50 /* PitchtapeApp.swift */,
@@ -256,7 +238,6 @@
 			buildPhases = (
 				852FCA0E0CFA1D233A76284D /* Sources */,
 				426B8AA4F26EA242D4B23818 /* Resources */,
-				350D9366C85952D1C3422573 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -264,7 +245,6 @@
 			);
 			name = Pitchtape;
 			packageProductDependencies = (
-				E96D5786F361727C3D003953 /* Alamofire */,
 			);
 			productName = Pitchtape;
 			productReference = 237C76702C1B987AE41CAE5E /* Pitchtape.app */;
@@ -296,9 +276,6 @@
 			);
 			mainGroup = C3238F314DEE4BB7D1C72763;
 			minimizedProjectReferenceProxies = 1;
-			packageReferences = (
-				29768AF7771870E5B6E92023 /* XCRemoteSwiftPackageReference "Alamofire" */,
-			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 96C29C89243A7CF5B0E3D526 /* Products */;
 			projectDirPath = "";
@@ -326,8 +303,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2043639B3FCD63A7C67FF0B9 /* APIConfig.swift in Sources */,
-				F54C7FD5059BC4091E4A8A21 /* AppDelegate.swift in Sources */,
 				C6E252F606381E53FBB4A74C /* BoothCard.swift in Sources */,
 				6D381548C118EF3EBDCCE065 /* BoothDesk.swift in Sources */,
 				1A6E09A44F742E62F8B50A42 /* CallMark.swift in Sources */,
@@ -402,7 +377,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 6.2;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pitchtape.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Pitchtape";
 			};
 			name = Debug;
@@ -413,7 +388,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Pitchtape;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
@@ -421,7 +396,8 @@
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app does not use the camera.";
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -565,7 +541,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Pitchtape;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
@@ -573,7 +549,8 @@
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app does not use the camera.";
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -606,7 +583,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 6.2;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pitchtape.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Pitchtape";
 			};
 			name = Release;
@@ -642,25 +619,6 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		29768AF7771870E5B6E92023 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/srfcsthpvf-prog/Alamofire";
-			requirement = {
-				kind = revision;
-				revision = 3ea8e93ec37a3ae5f255afb529ef20f438dd1903;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		E96D5786F361727C3D003953 /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 29768AF7771870E5B6E92023 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E6F7164478789C7AE080F612 /* Project object */;
 }

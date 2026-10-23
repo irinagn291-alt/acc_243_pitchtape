@@ -1,8 +1,4 @@
 name: Pitchtape
-packages:
-  Alamofire:
-    url: https://github.com/srfcsthpvf-prog/Alamofire
-    revision: 3ea8e93ec37a3ae5f255afb529ef20f438dd1903
 options:
   bundleIdPrefix: com.zalupik
   deploymentTarget:
@@ -21,8 +17,6 @@ targets:
       - path: Pitchtape
     resources:
       - path: PrivacyInfo.xcprivacy
-    dependencies:
-      - package: Alamofire
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.zalupik.pupiuk
@@ -31,7 +25,8 @@ targets:
         INFOPLIST_KEY_ITSAppUsesNonExemptEncryption: NO
         INFOPLIST_KEY_CFBundleDisplayName: Pitchtape
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
-        INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight
         INFOPLIST_KEY_UIUserInterfaceStyle: Dark
         INFOPLIST_KEY_NSCameraUsageDescription: This app does not use the camera.
         INFOPLIST_KEY_UIRequiresFullScreen: YES
@@ -40,8 +35,8 @@ targets:
         TARGETED_DEVICE_FAMILY: "1"
         SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD: NO
         SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD: NO
-        CURRENT_PROJECT_VERSION: 1
-        MARKETING_VERSION: "1.0.0"
+        CURRENT_PROJECT_VERSION: 10
+        MARKETING_VERSION: "1.5"
         SWIFT_STRICT_CONCURRENCY: complete
         CODE_SIGN_STYLE: Automatic
   PitchtapeTests:
